@@ -8,7 +8,7 @@ const db = mysql.createConnection(
   {
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Skullc4ndy!',
     database: 'workplace_db'
   }
 )
@@ -84,7 +84,7 @@ function viewDepartments(){
   })
 }
 function viewRoles(){
-  
+
   const tellMe = "SELECT * FROM role;"
 
   db.query(tellMe, (err, rows) => {
@@ -147,14 +147,91 @@ function viewEmployees(){
     })
 }
 function addDepartment(){
-
-}
-function addRole(){
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the name of the new department?"
+      }
+    ])
 
 }
 function addEmployee(){
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the new employee's first name?",
+        name: "first"
+      },
+      {
+        type: "input",
+        message: "What is the new employee's last name?",
+        name: "last"
+      },
+      {
+        type: "list",
+        message: "Which department will the new employee work in?",
+        name: "department",
+        choices: [
+          // see if you can populate the department names from department table mySQL as choices
+        ]
+      },
+      {
+        type: "list",
+        message: "What is their job title?",
+        name: "title",
+        choices: [
+          // see if you can populate the title's from role table in mySQL as choices
+        ]
+      }
+    ])
+
+}
+function addRole(){
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Which department will this new role be in?",
+        name: "department",
+        choices: [
+          // see if you can populate the department names from department table mySQL as choices
+        ]        
+      },
+      {
+        type: "input",
+        message: "What is the title of this new role?",
+        name: "title"
+      },
+      {
+        type: "input",
+        message: "What is the yearly salary of this new role?",
+        name: "dollaDollaBills"
+      }
+
+    ])
 
 }
 function updateEmployee(){
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "Please choose the employee you wish to update by their ID:",
+        name: "Id"
+      },
+      {
+        type: "list",
+        message: "What would you like to update for this employee?", // might be zesty to get the employee's name in there?
+        choices: [
+          "Update first name",
+          "Update last name",
+          "Update role",
+          "Terminate" // hoping this isn't over acheiving
+        ],
+        name: "inMyHands"
+      }
+    ])
   
 }
