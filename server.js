@@ -72,12 +72,79 @@ const questions = () => {
 }
 function viewDepartments(){
 
+  const tellMe = "SELECT * FROM department;";
+
+  db.query(tellMe, (err, rows) => {
+    if (err) {
+      throw
+    } else {
+      console.table(rows);
+      questions();
+    }
+  })
 }
 function viewRoles(){
+  
+  const tellMe = "SELECT * FROM role;"
 
+  db.query(tellMe, (err, rows) => {
+    if (err) {
+      throw
+    } else {
+      console.table(rows);
+      questions();
+    }
+  })
 }
 function viewEmployees(){
 
+  const tellMeById = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.id LEFT JOIN department ON department.id=role.id;";
+  const tellMeByLastName = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.id LEFT JOIN department ON department.id=role.id ORDER BY last_name ASC;";
+  const tellMeByFirstName = "SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.id LEFT JOIN department ON department.id=role.id ORDER BY first_name ASC;"
+  // Narrow by user known information
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Ordered by:",
+        choices: [
+          "ID",
+          "First Name",
+          "Last Name"
+        ]
+      }
+    ])
+    .then(answers => {
+      const choice = answers;
+      if (choice === "ID") {
+        db.query(tellMeById, (err, rows) => {
+          if (err){
+            throw err;
+          } else {
+            console.table(rows),
+            questions();
+          }
+        })
+      } if (choice === "First Name") {
+        db.query(tellMeByFirstName, (err, rows) => {
+          if (err){
+            throw err;
+          } else {
+            console.table(rows),
+            questions();
+          }
+        })
+      } if (choice === "Last Name") {
+        db.query(tellMeByLastName, (err, rows) => {
+          if (err){
+            throw err;
+          } else {
+            console.table(rows),
+            questions();
+          }
+        })
+      }
+    })
 }
 function addDepartment(){
 
