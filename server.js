@@ -83,7 +83,8 @@ const questions = () => {
       }
 
     })
-  }
+}
+
 function viewDepartments(){
 
   const tellMe = `SELECT * FROM department;`;
@@ -94,6 +95,7 @@ function viewDepartments(){
     questions();
   })
 }
+
 function viewRoles(){
 
   const tellMe = `SELECT role.id, department.name, role.title, role.salary FROM role LEFT JOIN department ON department.id=role.department_id;`
@@ -104,6 +106,7 @@ function viewRoles(){
       questions();
     })
 }
+
 function viewEmployees(){
 
   const tellMeById = `SELECT employee.id, employee.first_name, employee.last_name, department.name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.role_id LEFT JOIN department ON department.id=role.department_id;`;
@@ -153,6 +156,7 @@ function viewEmployees(){
       }
     })
 }
+
 function addDepartment(){
   inquirer
     .prompt([
