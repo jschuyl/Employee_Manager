@@ -25,12 +25,12 @@ connection.connect(function(err) {
 });
 
 function welcome(){
-console.log('____________________'),
-console.log('|                  |'),
-console.log('|    WELCOME TO    |'),
-console.log('| EMPLOYEE MANAGER |'),
-console.log('|                  |'),
-console.log('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
+console.log('________________________'),
+console.log('|||                  |||'),
+console.log('|||    WELCOME TO    |||'),
+console.log('||| EMPLOYEE MANAGER |||'),
+console.log('|||                  |||'),
+console.log('‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾')
 };
 // Ask the questions to know what the user wants
 
@@ -85,7 +85,7 @@ const questions = () => {
     })
 }
 
-function viewDepartments(){
+function viewDepartments(){ // FINISHED
 
   const tellMe = `SELECT * FROM department;`;
 
@@ -96,7 +96,7 @@ function viewDepartments(){
   })
 }
 
-function viewRoles(){
+function viewRoles(){ // FINISHED
 
   const tellMe = `SELECT role.id, department.name, role.title, role.salary FROM role LEFT JOIN department ON department.id=role.department_id;`
 
@@ -107,7 +107,7 @@ function viewRoles(){
     })
 }
 
-function viewEmployees(){
+function viewEmployees(){ // FINISHED
 
   const tellMeById = `SELECT employee.id, employee.first_name, employee.last_name, department.name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.role_id LEFT JOIN department ON department.id=role.department_id;`;
   const tellMeByLastName = `SELECT employee.id, employee.last_name, employee.first_name, department.name, role.title, role.salary FROM employee LEFT JOIN role ON role.id=employee.role_id LEFT JOIN department ON department.id=role.department_id ORDER BY last_name ASC;`;
@@ -157,7 +157,7 @@ function viewEmployees(){
     })
 }
 
-function addDepartment(){
+function addDepartment(){ // FINISHED
   inquirer
     .prompt([
       {
@@ -175,7 +175,7 @@ function addDepartment(){
 
 }
 
-function addEmployee(){
+function addEmployee(){ // FINISHED
   let chooseDepartments = [];
   let chooseRoles = [];
   let chooseManagers = [];
@@ -242,7 +242,7 @@ connection.query('SELECT * FROM department', (err, depInfo) => {
   })
 };
 
-function addRole(){
+function addRole(){ // NEEDS TO BE STARTED
   inquirer
     .prompt([
       {
@@ -268,7 +268,7 @@ function addRole(){
 
 }
 
-function updateEmployee(){
+function updateEmployee(){ // NEEDS WORK
   
   inquirer
     .prompt([
