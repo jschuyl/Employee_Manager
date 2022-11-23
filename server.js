@@ -1,15 +1,7 @@
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const ctable = require('console.table'); // `C` table... get it?
 
-const connection = mysql.createConnection(
-  {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'workplace_db'
-  }
-)
+const connection = require('./config/connection')
 
 connection.connect(function(err) {
   if (err) {
