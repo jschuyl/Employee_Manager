@@ -258,7 +258,7 @@ function addRole(){ // NEEDS TESTING
       }
     ])
     .then((response) => {
-      connection.query(`INSERT INTO roles (title, salary, department_id) VALUES (${response.title}, ${response.dollaDollaBills}, ${response.department})`, (err) => {
+      connection.query(`INSERT INTO role (title, salary, department_id) VALUES ('${response.title}', '${response.dollaDollaBills}', '${response.department}')`, (err) => {
         if (err) throw err;
         console.log(`${response.title} role added to ${response.department}`);
         questions();
@@ -409,6 +409,7 @@ function updateEmployee(){ // NEEDS WORK
                         if (response.emperorsThumb === true ){
                           connection.query(`DELETE FROM employee WHERE employee.id=${thisHereEmployeeId}`, (err) => {
                             console.log(`Employee #${thisHereEmployeeId} terminated, returning to menu`);
+                            if (err) throw err;
                             questions();
                           })
                         } if (response.emperorsThumb === false) {

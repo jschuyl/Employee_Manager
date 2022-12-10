@@ -1,4 +1,11 @@
-{
+{  
+"name": "employee_manager",
+"version": "1.0.0",
+"description": "",
+"scripts": {
+  "start": "node server.js"
+},
+"main": "server.js",
   "dependencies": {
     "console.table": "^0.10.0",
     "dotenv": "^16.0.3",
